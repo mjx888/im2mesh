@@ -51,9 +51,9 @@ function plotMesh3d( vert, ele, tnum, color_code, opt )
 %         When omitted, assign one phase.
 %
 %   color_code: Color code for selecting colormap.
-%                Interger. Value: 0-10. Default value: 0
-%                0: grayscale, 1: lines, 2: parula, 3: turbo, 4: jet, 5: hot
-%                6: cool, 7: summer, 8: winter, 9: bone, 10: pink.
+%               Interger. Value: 0-10. Default value: 0
+%               0: grayscale, 1: lines, 2: parula, 3: turbo, 4: jet, 5: hot
+%               6: cool, 7: summer, 8: winter, 9: bone, 10: pink.
 %
 %   opt: a structure array. It is the extra options for plotMesh3d.
 %        It stores extra parameter settings for plotMesh3d.
