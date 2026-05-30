@@ -1,5 +1,5 @@
 function xyNew = insertBiasedSeed( xy, iters, ratio )
-% insertBiasedSeed: inserts biased points between vertices of an edge
+% insertBiasedSeed: inserts biased points between vertices of an 2d edge
 %
 % Take the coordinates x, y of a 2D edge, and returns new coordinates
 % xNew, yNew. The new coordinates will have biased points inserted on each
@@ -13,9 +13,11 @@ function xyNew = insertBiasedSeed( xy, iters, ratio )
 %	xyNew = insertBiasedSeed( xy, iters, ratio );
 %
 % input:
-%     xy is a 2-by-2 array. Each row is a vertex for a 2D edge
-%     iters is the number of iterations
-%     ratio is a numeric, -1 < ratio < 1. Biased ratio.
+%	xy is a 2-by-2 array. Each row is a vertex for a 2D edge
+%
+%	iters is the number of iterations
+%
+%	ratio is a numeric, -1 < ratio < 1. Biased ratio.
 %         if ratio is positive, normal case
 %         if ratio is negative, flip biased direction
 %
