@@ -16,7 +16,7 @@ function poly = taubinSmooth(poly, lambda, mu, iters)
     isClosed = isequal(poly(1,:), poly(end,:));
     
     % Repeat the pair of (lambda, mu) steps 'iters' times
-    for k = 1:iters
+    for k = 1: iters
         % Forward Laplacian
         poly = smoothStep(poly, lambda, isClosed);
         
