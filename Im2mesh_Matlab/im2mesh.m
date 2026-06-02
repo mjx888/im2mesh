@@ -42,7 +42,7 @@ function [ vert, tria, tnum, vert2, tria2, conn, bounds ] = im2mesh( im, opt )
 %                inflation step within every iteration. It moves nodes 
 %                slightly backward to counteract volume loss and must 
 %                satisfy lambda < -mu.
-%                Default value: -0.53
+%                Default value: -0.51
 %
 %   opt.iters  - For Taubin smoothing of 2d polyline.
 %                Integer (>= 0). The number of full shrink-and-inflate 
@@ -260,7 +260,7 @@ function new_opt = setOption( opt )
     % initialize new_opt with default field names & value 
     new_opt.tf_avoid_sharp_corner = false;
     new_opt.lambda = 0.5;
-    new_opt.mu = -0.53;
+    new_opt.mu = -0.51;
     new_opt.iters = 100;
     new_opt.thresh_turn = 0;
     new_opt.thresh_vert_smooth = 0;
