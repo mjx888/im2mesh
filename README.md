@@ -4,7 +4,7 @@
 
 **Im2mesh** is an open-source MATLAB/Octave package for generating finite element mesh based on 2D or 3D multi-phase image. It provides a robust workflow capable of processing various input images, such as microstructure images of engineering materials. Due to its generalized framework, Im2mesh can handle segmented image with more than 10 phases.  Im2mesh was originally released on [MathWorks File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/71772-im2mesh-2d-image-to-finite-element-mesh) in 2019. 
 
-Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part geometry, aka multi-domain or multi-phase geometry (see demo14-17).
+Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part geometry, aka multi-domain or multi-phase geometry (see demo12-18).
 
 <p align="center">
   <img src = "https://mjx888.github.io/im2mesh_demo_html/cover_2602.jpg" height="220"> 
@@ -72,14 +72,14 @@ Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part
 
 ## How to start
 
-After downloading Im2mesh package ([releases](https://github.com/mjx888/im2mesh/releases)), I suggest you start with [Im2mesh_GUI app](https://github.com/mjx888/im2mesh/tree/main/Im2mesh_GUI%20app) in the folder, which will help you understand the workflow and parameters of Im2mesh. A detailed tutorial is provided in [Im2mesh_GUI Tutorial.pdf](https://github.com/mjx888/im2mesh/blob/main/Im2mesh_GUI%20Tutorial.pdf). **Note that Im2mesh_GUI is for 2D images.** 
+After downloading Im2mesh package, I suggest you start with [Im2mesh_GUI app](https://github.com/mjx888/im2mesh/tree/main/Im2mesh_GUI%20app) in the folder, which will help you understand the workflow and parameters of Im2mesh. A detailed tutorial is provided in [Im2mesh_GUI Tutorial.pdf](https://github.com/mjx888/im2mesh/blob/main/Im2mesh_GUI%20Tutorial.pdf). **Note that Im2mesh_GUI is for 2D images.** 
 
 Then, you can learn to use Im2mesh package in the folder "Im2mesh_Matlab" or "Im2mesh_Octave". 20 examples are provided. demo01-18 are for 2D images. demo19-20 are for 3D voxel images.
 
 - If you're using MATLAB,  examples are live script `mlx` files (`demo01.mlx` ~ `demo20.mlx`). If you find some text in the `mlx` file is missing, please read the `html` file instead.
 - If you're using Octave,  examples are `m` files (`demo01.m` ~ `demo10.m`).
 - Examples are also available as `html` files in the folder "demo_html".
-- You can skip demo04-06 and demo10-11. These several demo are kept for historical reason.
+- You can skip demo04 and demo09. These demos are kept for historical reason.
 - If you're only interested in 3D voxel images, you can skip demo01-18.
 
 **Examples:**
@@ -88,23 +88,22 @@ Then, you can learn to use Im2mesh package in the folder "Im2mesh_Matlab" or "Im
 - [demo02](https://mjx888.github.io/im2mesh_demo_html/demo02.html) - Demonstrate function `im2meshBuiltIn`, which use MATLAB built-in function `generateMesh` as mesh generator.
 - [demo03](https://mjx888.github.io/im2mesh_demo_html/demo03.html) - Export: save mesh as `inp`, `bdf`, `msh` or, `stl` file; save image boundary as `dxf` file, Gmsh `geo` file, or PSLG data.
 - [demo04](https://mjx888.github.io/im2mesh_demo_html/demo04.html) - What is inside function `im2mesh`
-- [demo05](https://mjx888.github.io/im2mesh_demo_html/demo05.html) - Avoid sharp corner
-- [demo06](https://mjx888.github.io/im2mesh_demo_html/demo06.html) - Thresholds in polyline smoothing
-- [demo07](https://mjx888.github.io/im2mesh_demo_html/demo07.html) - Parameter `hmax` and `grad_limit` in mesh generation
-- [demo08](https://mjx888.github.io/im2mesh_demo_html/demo08.html) - Function `plotMeshes`
-- [demo09](https://mjx888.github.io/im2mesh_demo_html/demo09.html) - How to select phases for meshing
-- [demo10](https://mjx888.github.io/im2mesh_demo_html/demo10.html) - Different polyline smoothing techniques
-- [demo11](https://mjx888.github.io/im2mesh_demo_html/demo11.html) - Find node sets at the interface and boundary
-- [demo12](https://mjx888.github.io/im2mesh_demo_html/demo12.html) - Function `pixelMesh` (pixel-based quadrilateral mesh)
-- [demo13](https://mjx888.github.io/im2mesh_demo_html/demo13.html) - Use `Gmsh` as mesh generator
-- [demo14](https://mjx888.github.io/im2mesh_demo_html/demo14.html) - Use polyshape to define geometry for mesh generation
-- [demo15](https://mjx888.github.io/im2mesh_demo_html/demo15.html) - Edit polygonal boundaries before meshing
+- [demo05](https://mjx888.github.io/im2mesh_demo_html/demo05.html) - Thresholds in polyline smoothing
+- [demo06](https://mjx888.github.io/im2mesh_demo_html/demo06.html) - Parameter `hmax` and `grad_limit` in mesh generation
+- [demo07](https://mjx888.github.io/im2mesh_demo_html/demo07.html) - Function `plotMeshes`
+- [demo08](https://mjx888.github.io/im2mesh_demo_html/demo08.html) - Select phases for meshing
+- [demo09](https://mjx888.github.io/im2mesh_demo_html/demo09.html) - Find node sets at the interface and boundary
+- [demo10](https://mjx888.github.io/im2mesh_demo_html/demo10.html) - Function `pixelMesh` (pixel-based quadrilateral mesh)
+- [demo11](https://mjx888.github.io/im2mesh_demo_html/demo11.html) - Use `Gmsh` as mesh generator
+- [demo12](https://mjx888.github.io/im2mesh_demo_html/demo12.html) - Use polyshape to define geometry
+- [demo13](https://mjx888.github.io/im2mesh_demo_html/demo13.html) - 2D mesh for periodic boundary conditions
+- [demo14](https://mjx888.github.io/im2mesh_demo_html/demo14.html) - Edit polygonal boundaries before meshing
+- [demo15](https://mjx888.github.io/im2mesh_demo_html/demo15.html) - Generate mesh based on 2D contours
 - [demo16](https://mjx888.github.io/im2mesh_demo_html/demo16.html) - Add mesh seeds/nodes
 - [demo17](https://mjx888.github.io/im2mesh_demo_html/demo17.html) - Refine mesh
 - [demo18](https://mjx888.github.io/im2mesh_demo_html/demo18.html) - 2D image to tetrahedral mesh
 - [demo19](https://mjx888.github.io/im2mesh_demo_html/demo19.html) - Function `voxelMesh` (voxel-based hexahedral mesh)
 - [demo20](https://mjx888.github.io/im2mesh_demo_html/demo20.html) - 3D voxel image to tetrahedral mesh (via fTetWild)
-- [demo21](https://mjx888.github.io/im2mesh_demo_html/demo21.html) - 2D mesh for periodic boundary conditions
 
 
 
@@ -130,7 +129,6 @@ This project incorporates code from the following open-source projects. I apprec
 - [dpsimplify](https://www.mathworks.com/matlabcentral/fileexchange/21132-line-simplification) by Wolfgang Schwanghart
 - [p_poly_dist](https://www.mathworks.com/matlabcentral/fileexchange/12744-distance-from-points-to-polyline-or-polygon) by Michael Yoshpe
 - [MeshQualityQuads](https://www.mathworks.com/matlabcentral/fileexchange/33108-unstructured-quadrilateral-mesh-quality-assessment) by Allan Peter Engsig-Karup
-- [ccma](https://github.com/UniBwTAS/ccma) by UniBwTAS
 - [XtalMesh](https://github.com/jonathanhestroffer/XtalMesh) by Jonathan Hestroffer
 
 
