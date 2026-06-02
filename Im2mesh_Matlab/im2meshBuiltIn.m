@@ -6,49 +6,73 @@ function [ vert, tria, tnum, vert2, tria2, model1, model2 ] = im2meshBuiltIn( im
 %   [ vert, tria, tnum ] = im2meshBuiltIn( im );   % this use default setting
 %   [ vert, tria, tnum ] = im2meshBuiltIn( im, opt );
 %
-%   [ vert, tria, tnum, vert2, tria2 ] = im2meshBuiltIn( im );   % this use default setting
+%   [ vert, tria, tnum, vert2, tria2 ] = im2meshBuiltIn( im );
 %   [ vert, tria, tnum, vert2, tria2 ] = im2meshBuiltIn( im, opt );
 %
-% input
+% input:
 %   im - grayscale segmented image
 %
 %   opt - a structure array. It is the options for im2meshBuiltIn.
 %         It stores parameter settings for im2meshBuiltIn.
 %
-%   opt.tf_avoid_sharp_corner - For function getCtrlPnts
+%   opt.tf_avoid_sharp_corner - For getCtrlPnts.m (get control points).
 %                               Boolean. Whether to avoid sharp corner when 
 %                               simplifying polygon.
 %                               Sharp corner in some cases will make MESH2D
 %                               not able to converge.
 %                               Default value: false
 %
-%   opt.lambda - Taubin smoothing. Default value: 0.5
-%   opt.mu     - Taubin smoothing. Default value: -0.5
-%   opt.iters  - Taubin smoothing. Default value: 100
+%   opt.lambda - For Taubin smoothing of 2d polyline.
+%                Float (0 < lambda < 1). The scale factor for the micro
+%                smoothing step within every iteration. It dictates how far
+%                a node moves toward its neighbors' average position to 
+%                reduce high-frequency curvature.
+%                Default value: 0.5
 %
-%   opt.thresh_turn - For funtion smoothBounds
-%                     Threshold value for the number of turning points in 
-%                     a polyline during polyline smoothing.
+%   opt.mu     - For Taubin smoothing of 2d polyline.
+%                Float (-1 < mu < 0). The scale factor for the micro
+%                inflation step within every iteration. It moves nodes 
+%                slightly backward to counteract volume loss and must 
+%                satisfy lambda < -mu.
+%                Default value: -0.53
+%
+%   opt.iters  - For Taubin smoothing of 2d polyline.
+%                Integer (>= 0). The number of full shrink-and-inflate 
+%                cycles to perform. Set to 0 to disable boundary smoothing 
+%                entirely.
+%                Default value: 100
+%
+%   opt.thresh_turn - For Taubin smoothing of 2d polyline.
+%                     Integer (>= 0). Threshold value for the number of 
+%                     turning points in a polyline during polyline 
+%                     smoothing. Only those polylines with number of 
+%                     turning points greater than this threshold will be 
+%                     smoothed.
 %                     Default value: 0
 %
-%   opt.thresh_vert_smooth - For funtion smoothBounds
+%   opt.thresh_vert_smooth - For Taubin smoothing of 2d polyline.
+%                            Type: Integer or an array with two elements.
 %                            Threshold value for the number of vertices in 
-%                            a polyline during polyline smoothing.
+%                            a polyline during polyline smoothing. Only 
+%                            those polylines with number of vertices 
+%                            greater than this threshold will be smoothed. 
 %                            It can be set as an integer or an array with 
 %                            two elements. See section 4 in Tutorial.pdf
 %                            Default value: 0
 %     
-%   opt.tolerance - For funtion simplifyBounds
-%                   Tolerance for polygon simplification.
-%                   Check Douglas-Peucker algorithm.
-%                   If u don't need to simplify, try tolerance = eps.
+%   opt.tolerance - For simplifyBounds.m (simplify polyline).
+%                   Tolerance for polygon simplification (Douglas-Peucker).
+%                   The maximum allowable deviation of a vertex from the 
+%                   simplified curve.
+%                   If you don't need to simplify, try tolerance = eps.
 %                   If the value of tolerance is too large, some polygons
 %                   will become line segment after simplification, and 
 %                   these polygons will be deleted by function 
 %                   delZeroAreaPoly.
 %                   Default value: 0.3
 %
-%   opt.thresh_vert_simplify - For funtion simplifyBounds
+%   opt.thresh_vert_simplify - For simplifyBounds.m (simplify polyline).
+%                              Type: Integer or an array with two elements.
 %                              Threshold value for number of vertices in
 %                              a polyline during polyline simplification.
 %                              It can be set as an integer or an array with 
@@ -56,20 +80,23 @@ function [ vert, tria, tnum, vert2, tria2, model1, model2 ] = im2meshBuiltIn( im
 %                              Default value: 0
 %
 %   opt.select_phase - Default value: []
-%                      See demo09 for usage example.
+%                      See demo08 for usage example.
 %     
 %  Please check documentation of matlab built-in function generateMesh for 
 %  parameter hgrad, hmax, and hmin. 
 %  https://www.mathworks.com/help/pde/ug/pde.pdemodel.generatemesh.html
 %
-%   opt.hgrad       % For funtion poly2meshBuiltIn
-%                   % Mesh growth rate. Default value: 1.25
+%   opt.hgrad - For mesh generation.
+%               Mesh growth rate. 
+%               Default value: 1.25
 %     
-%   opt.hmax        % For funtion poly2meshBuiltIn
-%                   % Target maximum mesh edge length. Default value: 500
+%   opt.hmax - For mesh generation.
+%              Target maximum mesh edge length. 
+%              Default value: 500
 % 
-%   opt.hmin        % For funtion poly2meshBuiltIn
-%                   % Target minimum mesh edge length. Default value: 1
+%   opt.hmin - For mesh generation.
+%              Target minimum mesh edge length. 
+%              Default value: 1
 %   
 % output:
 %   vert, tria define linear elements. vert2, tria2 define 2nd order elements.
@@ -188,7 +215,7 @@ function new_opt = setOption( opt )
     % initialize new_opt with default field names & value 
     new_opt.tf_avoid_sharp_corner = false;
     new_opt.lambda = 0.5;
-    new_opt.mu = -0.5;
+    new_opt.mu = -0.53;
     new_opt.iters = 100;
     new_opt.thresh_turn = 0;
     new_opt.thresh_vert_smooth = 0;

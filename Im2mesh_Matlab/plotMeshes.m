@@ -5,7 +5,7 @@ function plotMeshes( vert, ele, tnum, color_code, opt )
 %
 % Nodes must be counter-clockwise ordering in an linear element.
 %
-% See demo08 for usage examples.
+% See demo07 for usage examples.
 %
 % usage 1:
 %   plotMeshes( vert, ele );        % one phase

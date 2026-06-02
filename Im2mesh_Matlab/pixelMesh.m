@@ -1,6 +1,6 @@
 function [vert,ele,tnum,vert2,ele2] = pixelMesh( im, opt )
 % pixelMesh: Convert 2d multi-phase image to pixel-based finite element 
-% mesh (4-node quadrilateral element). See demo12 for usage example.
+% mesh (4-node quadrilateral element). See demo10 for usage example.
 %
 % usage:
 %   [vert,ele,tnum,vert2,ele2] = pixelMesh( im );
@@ -26,7 +26,7 @@ function [vert,ele,tnum,vert2,ele2] = pixelMesh( im, opt )
 %                      phases corresponding to grayscales of 40, 200, 
 %                      and 240 will be chosen to perform meshing.
 %                      Default value: []
-%                      See demo09 for usage example.
+%                      See demo08 for usage example.
 %
 % output:
 %   vert, ele define linear elements. vert2, ele2 define 2nd order elements.

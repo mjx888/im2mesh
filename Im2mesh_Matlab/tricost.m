@@ -27,6 +27,7 @@ function tricost(varargin)
 %   Last updated    : 09/07/2018
 %-----------------------------------------------------------
 %   Revise to work for the following usage:
+%           tricost(vert,tria);
 %           tricost(vert,tria,tnum);
 %   by Jiexian Ma
 %-----------------------------------------------------------
