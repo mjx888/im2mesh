@@ -80,7 +80,7 @@ function [ vert, tria, tnum, vert2, tria2, model1, model2 ] = im2meshBuiltIn( im
 %                              Default value: 0
 %
 %   opt.select_phase - Default value: []
-%                      See demo09 for usage example.
+%                      See demo08 for usage example.
 %     
 %  Please check documentation of matlab built-in function generateMesh for 
 %  parameter hgrad, hmax, and hmin. 
