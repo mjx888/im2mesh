@@ -4,6 +4,9 @@ function [vert,conn,tria,tnum] = deltri1( node, edge, part )
 % usage:
 %	[vert,conn,tria,tnum] = deltri1( node, edge, part );
 %
+% input:
+%   node, edge, part is PSLG data
+%
 % deltri2 compute a constrained 2-simplex Delaunay triangula-
 % tion in the two-dimensional plane.
 %   Darren Engwirda : 2017 --
@@ -17,6 +20,7 @@ function [vert,conn,tria,tnum] = deltri1( node, edge, part )
      vert = node;
      conn = edge;
      PSLG = edge;
+
     %------------------------------------ compute Delaunay tria.
     if (exist('delaunayTriangulation') == +2 )
         dtri = delaunayTriangulation(vert,conn);
