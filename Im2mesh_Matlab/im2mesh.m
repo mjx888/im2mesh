@@ -117,7 +117,7 @@ function [ vert, tria, tnum, vert2, tria2, conn, bounds ] = im2mesh( im, opt )
 %                      phases corresponding to grayscales of 40, 200, 
 %                      and 240 will be chosen to perform meshing.
 %                      Default value: []
-%                      See demo09 for usage example.
+%                      See demo08 for usage example.
 %
 %   opt.tf_mesh - Whether to mesh. Boolean.
 %                 If true, meshing, else, no meshing & return boundsClear
