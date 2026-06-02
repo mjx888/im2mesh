@@ -21,8 +21,8 @@ function [vert,tria,tnum,vert2,tria2,etri] = bounds2mesh( bounds, hmax, grad_lim
 %		   on the mesh edge lengths. Range: > 0
 %   
 %   grad_limit - A limit on the gradient of mesh-size function.
-%				 Range: > 0. Typical value: 0.15 - 0.5
-%				 http://persson.berkeley.edu/pub/persson04gradlim.pdf
+%                Range: > 0. Typical value: 0.15 - 0.5
+%                http://persson.berkeley.edu/pub/persson04gradlim.pdf
 %
 %   opt - a structure array. It is the options for bounds2mesh.
 %         It stores extra parameter settings for bounds2mesh.
@@ -43,15 +43,17 @@ function [vert,tria,tnum,vert2,tria2,etri] = bounds2mesh( bounds, hmax, grad_lim
 %                   Default value: 0
 %
 %   opt.outerbound_size - Element size at the outermost polygonal boundary.
-%                         This is used to refine mesh near outermost 
+%                         This is used to refine mesh near the outermost 
 %                         boundary.
+%                         If you don t need to refine mesh near outermost 
+%                         boundary, you can set opt.outerbound_size to 0.
 %                         Default value: 0
 %
 %   opt.bound_size - Element size at constraint edges (i.e., polygonal 
 %                    boundary). This is used to refine mesh near all 
-%                    polygonal boundary, which maybe useful in some cases.
-%                    If you don t need to refine mesh near boundary, you 
-%                    can set bound_size to 0.
+%                    polygonal boundary.
+%                    If you don't need to refine mesh near boundary, you 
+%                    can set opt.bound_size to 0.
 %                    Default value: 0
 %                    In each edge, the seeds are inserted according to the 
 %                    following equation. 'len' is the length of an edge.
@@ -202,9 +204,9 @@ function [vert,tria,tnum,vert2,tria2,etri] = bounds2mesh( bounds, hmax, grad_lim
     
     optLfs.dhdx = grad_limit;   % dhdx is scalar gradient-limit
                                 % default +0.2500
-
+    
     optLfs.disp = opt.disp;
-
+    
     if opt.hinitial <= 0,  opt.hinitial = [];  end
     hinitial = opt.hinitial;
     
