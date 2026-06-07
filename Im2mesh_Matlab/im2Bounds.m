@@ -51,7 +51,7 @@ function bounds = bounds2CCW( bounds )
 % 
     for i = 1: length(bounds)
         for j = 1: length(bounds{i})
-            [ bounds{i}{j}(:,1), bounds{i}{j}(:,2) ] = poly2ccw( ...
+            [ bounds{i}{j}(:,1), bounds{i}{j}(:,2) ] = poly2ccwOS( ...
                                     bounds{i}{j}(:,1), bounds{i}{j}(:,2) );
             
         end
