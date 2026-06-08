@@ -1,12 +1,18 @@
-function bounds = im2Bounds( im )
+function bounds = im2Bounds( im, tf_usetoolbox )
 % im2Bounds: extract exact polygonal boundaries from grayscale segmented 
-% image using getExactBounds.m
+% image using getExactBoundsOS.m or getExactBounds.m
 %
 % usage:
 %	bounds = im2Bounds( im );
+%   bounds = im2Bounds( im, tf_usetoolbox );
 %
 % input:
-%   im - grayscale segmented image, type: uint8 matrix
+%   im - Grayscale segmented image. Type: uint8 matrix
+%
+%   tf_usetoolbox - Boolean. Whether to use Image Processing Toolbox.
+%                   This parameter is optional. im2Bounds is faster 
+%                   when using Image Processing Toolbox.
+%                   Defaulat value: 0
 %
 % output:
 %   bounds - cell array. bounds{i}{j} is one of the polygonal boundaries,  
@@ -25,6 +31,16 @@ function bounds = im2Bounds( im )
 % Project website: https://github.com/mjx888/im2mesh
 %
 
+    % check inputs
+    if nargin < 1
+        error("Not enough input arguments.");
+    end
+
+    if nargin < 2
+        tf_usetoolbox = 0;
+    end
+    
+    % pre-processing
     im = flip(im,1);	% in fem software using right-hand coordinate, 
                         % to coincide with that, must flip in row direction
                         % so the origin of coordinates is at bottom-left
@@ -33,11 +49,16 @@ function bounds = im2Bounds( im )
     num_phase = size( intensity, 1 );
     bounds = cell( num_phase, 1 );
     
+    % extract boundary
     for i = 1: num_phase
         bw = im == intensity(i);
         % Obtain the exact polygonal boundaries of objects and holes in 
         % binary image. Both objects and holes are 4-connected.
-        bounds{i} = getExactBounds( bw );
+        if ~tf_usetoolbox
+            bounds{i} = getExactBoundsOS( bw ); % use open-source functions
+        else
+            bounds{i} = getExactBounds( bw );   % use Toolbox
+        end
     end
     % size of bounds {i}{j} = (1+number_of_vertices)-by-2
     
