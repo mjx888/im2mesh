@@ -33,7 +33,7 @@ function bounds = delZeroAreaPoly( bounds )
 
             % convert a polygon to cell array that consists of polylines
             % x, y are N-by-1 cell arrays with one polygon segment per cell
-            [x, y] = polysplit( bounds{i}{j}(:,1), bounds{i}{j}(:,2) );
+            [x, y] = polysplitOS( bounds{i}{j}(:,1), bounds{i}{j}(:,2) );
             
             mark_empty_segment = false( numel(x), 1 );
 

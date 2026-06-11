@@ -55,9 +55,9 @@ Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part
 
 ## Dependencies
 
-- When using Im2mesh package or Im2mesh_GUI in MATLAB, you need to install MATLAB and the following MATLAB toolboxes: Image Processing Toolbox, Mapping Toolbox.
+- When running demo02 and demo18 in Im2mesh package, you need to install MATLAB Partial Differential Equation Toolbox. For other demos, no need to install any MATLAB toolboxes.
+- When running demo20 in Im2mesh package, you need to install fTetWild. 
 - When using Im2mesh_GUI as a standalone desktop application, there is no need to install MATLAB or any MATLAB toolboxes. 
-- When running demo20 of Im2mesh, we need to install fTetWild. No need to install any MATLAB toolboxes for demo20.
 
 
 
@@ -65,7 +65,7 @@ Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part
 
 - Im2mesh_GUI: MATLAB R2017b or later; version higher than R2018b is preferred.
 - Im2mesh package: MATLAB R2017b or later. GNU Octave 9.3.0 or later.
-- Gmsh: tested with version 4.13.1.
+- Gmsh: tested with version 4.13 and 4.14.
 
 
 

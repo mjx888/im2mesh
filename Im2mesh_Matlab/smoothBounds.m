@@ -82,7 +82,7 @@ function new_bounds = smoothBounds( bounds, lambda, mu, iters, thresh_num_turn, 
 
             % convert a polygon to cell array that consists of polylines
             % x, y are N-by-1 cell arrays with one polygon segment per cell
-            [x, y] = polysplit( bounds{i}{j}(:,1), bounds{i}{j}(:,2) );
+            [x, y] = polysplitOS( bounds{i}{j}(:,1), bounds{i}{j}(:,2) );
             
             % smooth polyline in the polygon
             for k = 1: numel(x)
@@ -116,7 +116,7 @@ function new_bounds = smoothBounds( bounds, lambda, mu, iters, thresh_num_turn, 
                 end
             end
             
-            [ new_bounds{i}{j}(:,1), new_bounds{i}{j}(:,2) ] = polyjoin(x, y);
+            [ new_bounds{i}{j}(:,1), new_bounds{i}{j}(:,2) ] = polyjoinOS(x, y);
         end
     end
 

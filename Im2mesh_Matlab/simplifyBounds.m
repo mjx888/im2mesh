@@ -59,7 +59,7 @@ function new_bounds = simplifyBounds( bounds, tolerance, thresh_num_vert )
             
             % convert a polygon to cell array that consists of polylines
             % x, y are N-by-1 cell arrays with one polygon segment per cell
-            [x, y] = polysplit( bounds{i}{j}(:,1), bounds{i}{j}(:,2) );
+            [x, y] = polysplitOS( bounds{i}{j}(:,1), bounds{i}{j}(:,2) );
             
             % simplify each polyline in the polygon
             for k = 1: numel(x)
@@ -89,7 +89,7 @@ function new_bounds = simplifyBounds( bounds, tolerance, thresh_num_vert )
             end
             
             new_bounds{i}{j} = [];
-            [ new_bounds{i}{j}(:,1), new_bounds{i}{j}(:,2) ] = polyjoin(x, y);
+            [ new_bounds{i}{j}(:,1), new_bounds{i}{j}(:,2) ] = polyjoinOS(x, y);
         end
     end
     
@@ -105,7 +105,7 @@ function polyline = reorient( polyline )
 
     if x(1) == x(end) && y(1) == y(end)
         % the polyline is a polygon, make it to counter clockwise
-        if ispolycw(x, y)
+        if ispolycwOS(x, y)
             x = x( end:-1:1 );  % convert to counter clockwise
             y = y( end:-1:1 );
         end
@@ -139,7 +139,7 @@ function bounds = mergeBounds( bounds )
     for i = 1: length(bounds)
         for j = 1: length(bounds{i})
             poly = [];
-            [ poly(:,1), poly(:,2) ] = polymerge( ...
+            [ poly(:,1), poly(:,2) ] = polymergeOS( ...
                                     bounds{i}{j}(:,1), bounds{i}{j}(:,2) );
             
             if isnan( poly(end,1) )
