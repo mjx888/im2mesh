@@ -55,8 +55,8 @@ Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part
 
 ## Dependencies
 
-- When running demo02 and demo18 in Im2mesh package, we need to install MATLAB Partial Differential Equation Toolbox. For other demos, no need to install any MATLAB toolboxes.
-- When running demo20 in Im2mesh package, we need to install fTetWild. 
+- When running demo02 and demo18 in Im2mesh package, you need to install MATLAB Partial Differential Equation Toolbox. For other demos, no need to install any MATLAB toolboxes.
+- When running demo20 in Im2mesh package, you need to install fTetWild. 
 - When using Im2mesh_GUI as a standalone desktop application, there is no need to install MATLAB or any MATLAB toolboxes. 
 
 
