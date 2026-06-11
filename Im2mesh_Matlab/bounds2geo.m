@@ -58,8 +58,10 @@ function bounds2geo( bounds, path_to_geo, opt )
 %         It stores parameter settings for bounds2geo.
 % 
 %  opt.sizeMin - Minimum mesh element size. Default value: 0.1
+%				 Gmsh command: Mesh.MeshSizeMin
 % 
 %  opt.sizeMax - Maximum mesh element size. Default value: 500
+%				 Gmsh command: Mesh.MeshSizeMax
 % 
 %  opt.algthm - 2D mesh algorithm (1: MeshAdapt, 2: Automatic, 
 %       3: Initial mesh only, 5: Delaunay, 6: Frontal-Delaunay, 7: BAMG, 
@@ -67,25 +69,32 @@ function bounds2geo( bounds, path_to_geo, opt )
 %       11: Quasi-structured Quad).
 %       Please refer to section 1.2.1 in Gmsh manual about mesh algorithm. 
 %       Default value: 6
+%		Gmsh command: Mesh.Algorithm
 % 
 %  opt.recombAll - Boolean. Value: 0 or 1. Whether to apply recombination 
 %                  algorithm to all surfaces, ignoring per-surface spec. 
 %                  Default value: 0
+%				   Gmsh command: Mesh.RecombineAll
 % 
 %  opt.recombAlgthm - Mesh recombination algorithm (0: simple, 1: blossom, 
 %                     2: simple full-quad, 3: blossom full-quad). 
 %                     Default value: 3
+%					  Gmsh command: Mesh.RecombinationAlgorithm
 % 
 %  opt.eleOrder - 1 or 2. Default value: 1
+%				  Gmsh command: Mesh.ElementOrder
 %
 %  opt.scalingFactor - Global scaling factor applied to the saved mesh. 
 %                      Default value: 1.
+%					   Gmsh command: Mesh.ScalingFactor
 %
 %  opt.num_split - Number of splitting for refining mesh.
 %                  Each triangle is split into four new sub-triangles.
 %                  Default value: 0
+%				   Gmsh command: RefineMesh;
 % 
 %  opt.grad_mode - Gradient mode. Integer. Value: 0, 1, 2.
+%				   A parameter introduced by me.
 %                  Default value: 0. 
 %                  When grad_mode is 0, mesh size field is not specified. 
 %                  When grad_mode is 1, the element size linearly increases
