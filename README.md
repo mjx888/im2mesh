@@ -2,7 +2,7 @@
 
 
 
-**Im2mesh** is an open-source MATLAB/Octave package for generating finite element mesh based on 2D or 3D multi-phase image. It provides a robust workflow capable of processing various input images, such as microstructure images of engineering materials. Due to its generalized framework, Im2mesh can handle segmented image with more than 10 phases.  Im2mesh was originally released on [MathWorks File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/71772-im2mesh-2d-image-to-finite-element-mesh) in 2019. 
+**Im2mesh** is an open-source MATLAB/Octave package for generating finite element mesh based on 2D or 3D multi-phase segmented image. It provides a robust workflow capable of processing various input images, such as microstructure images of engineering materials. Due to its generalized framework, Im2mesh can handle segmented image with more than 10 phases.  Im2mesh was originally released on [MathWorks File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/71772-im2mesh-2d-image-to-finite-element-mesh) in 2019. 
 
 Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part geometry, aka multi-domain or multi-phase geometry (see demo12-18).
 
