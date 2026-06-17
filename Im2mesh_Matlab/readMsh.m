@@ -31,7 +31,7 @@ function [nodes, elements] = readMshA(filename)
     % ---------------------------------------------------------------------
     % Check the input filename.
     if ~(ischar(filename) || (isstring(filename) && isscalar(filename)))
-        error('readMshA:InvalidFilename', ...
+        error('readMsh:InvalidFilename', ...
             'Filename must be a character vector or string scalar.');
     end
 
@@ -40,7 +40,7 @@ function [nodes, elements] = readMshA(filename)
     % Binary mode can safely read the ASCII header of either file type.
     [fid, message] = fopen(filename, 'rb');
     if fid == -1
-        error('readMshA:OpenFailed', 'Cannot open file: %s\n%s', ...
+        error('readMsh:OpenFailed', 'Cannot open file: %s\n%s', ...
             char(filename), message);
     end
     % Close the file automatically if an error occurs.
@@ -56,11 +56,11 @@ function [nodes, elements] = readMshA(filename)
 
     % Verify that the file is a supported Gmsh 2.2 mesh.
     if ~strcmp(meshFormatSection, '$MeshFormat')
-        error('readMshA:InvalidFormat', ...
+        error('readMsh:InvalidFormat', ...
             'The file does not begin with a Gmsh $MeshFormat section.');
     end
     if numel(formatValues) ~= 3 || formatValues(1) ~= 2.2
-        error('readMshA:UnsupportedVersion', ...
+        error('readMsh:UnsupportedVersion', ...
             'Only Gmsh file format version 2.2 is supported.');
     end
 
@@ -76,7 +76,7 @@ function [nodes, elements] = readMshA(filename)
         case 1
             [nodes, elements] = readBinaryFile(filename);
         otherwise
-            error('readMshA:InvalidFileType', ...
+            error('readMsh:InvalidFileType', ...
                 'Invalid Gmsh file type value: %g.', fileType);
     end
 end
@@ -88,7 +88,7 @@ function [nodes, elements] = readAsciiFile(filename)
     % Open the ASCII .msh file for reading.
     [fid, message] = fopen(filename, 'r');
     if fid == -1
-        error('readMshA:OpenFailed', 'Cannot open file: %s\n%s', ...
+        error('readMsh:OpenFailed', 'Cannot open file: %s\n%s', ...
             char(filename), message);
     end
     fileCleanup = onCleanup(@() fclose(fid));
@@ -109,7 +109,7 @@ function [nodes, elements] = readAsciiFile(filename)
                 numNodes = readPositiveIntegerLine(fid, 'node count');
                 nodeData = fscanf(fid, '%f', [4, numNodes]).';
                 if size(nodeData, 1) ~= numNodes
-                    error('readMshA:UnexpectedEndOfFile', ...
+                    error('readMsh:UnexpectedEndOfFile', ...
                         'Unexpected end of file while reading ASCII nodes.');
                 end
                 % Discard node numbers and keep only x, y, z coordinates.
@@ -145,7 +145,7 @@ function elements = readAsciiElements(fid, numElements)
     for elementIndex = 1:numElements
         values = sscanf(readLine(fid), '%f');
         if numel(values) < 3
-            error('readMshA:InvalidElement', ...
+            error('readMsh:InvalidElement', ...
                 'Invalid ASCII element record number %d.', elementIndex);
         end
 
@@ -155,7 +155,7 @@ function elements = readAsciiElements(fid, numElements)
             numTags = values(3);
             nodesStart = 4 + numTags;
             if numel(values) < nodesStart + 3
-                error('readMshA:InvalidElement', ...
+                error('readMsh:InvalidElement', ...
                     'Invalid tetrahedral element record number %d.', ...
                     elementIndex);
             end
@@ -176,7 +176,7 @@ function [nodes, elements] = readBinaryFile(filename)
     % the mesh-format section determines whether it must be reopened.
     [fid, message] = fopen(filename, 'rb', 'ieee-le');
     if fid == -1
-        error('readMshA:OpenFailed', 'Cannot open file: %s\n%s', ...
+        error('readMsh:OpenFailed', 'Cannot open file: %s\n%s', ...
             char(filename), message);
     end
     fileCleanup = onCleanup(@() fclose(fid));
@@ -191,14 +191,14 @@ function [nodes, elements] = readBinaryFile(filename)
     % file uses big-endian byte order and must be reopened accordingly.
     if endianCheck ~= 1
         if swapbytes(endianCheck) ~= 1
-            error('readMshA:InvalidEndianCheck', ...
+            error('readMsh:InvalidEndianCheck', ...
                 'Invalid binary endianness check value.');
         end
 
         delete(fileCleanup);
         [fid, message] = fopen(filename, 'rb', 'ieee-be');
         if fid == -1
-            error('readMshA:OpenFailed', 'Cannot reopen file: %s\n%s', ...
+            error('readMsh:OpenFailed', 'Cannot reopen file: %s\n%s', ...
                 char(filename), message);
         end
         fileCleanup = onCleanup(@() fclose(fid));
@@ -208,7 +208,7 @@ function [nodes, elements] = readBinaryFile(filename)
         readLine(fid);
         endianCheck = fread(fid, 1, 'int32=>int32');
         if endianCheck ~= 1
-            error('readMshA:InvalidEndianCheck', ...
+            error('readMsh:InvalidEndianCheck', ...
                 'Invalid binary endianness check value.');
         end
     end
@@ -267,7 +267,7 @@ function nodes = readBinaryNodes(fid, numNodes, isBigEndian)
     bytesPerNode = 4 + 3 * 8;
     raw = fread(fid, [bytesPerNode, numNodes], 'uint8=>uint8');
     if numel(raw) ~= bytesPerNode * numNodes
-        error('readMshA:UnexpectedEndOfFile', ...
+        error('readMsh:UnexpectedEndOfFile', ...
             'Unexpected end of file while reading binary nodes.');
     end
 
@@ -297,7 +297,7 @@ function elements = readBinaryElements(fid, numElements)
     while elementsRead < numElements
         blockHeader = fread(fid, 3, 'int32=>double');
         if numel(blockHeader) ~= 3
-            error('readMshA:UnexpectedEndOfFile', ...
+            error('readMsh:UnexpectedEndOfFile', ...
                 'Unexpected end of file while reading an element block.');
         end
 
@@ -312,7 +312,7 @@ function elements = readBinaryElements(fid, numElements)
         block = fread(fid, [valuesPerElement, blockCount], 'int32=>double');
 
         if numel(block) ~= valuesPerElement * blockCount
-            error('readMshA:UnexpectedEndOfFile', ...
+            error('readMsh:UnexpectedEndOfFile', ...
                 'Unexpected end of file while reading element type %d.', ...
                 elementType);
         end
@@ -337,7 +337,7 @@ function numNodes = nodesPerElement(elementType)
     nodeCounts = [2, 3, 4, 4, 8, 6, 5, 3, 6, 9, 10, 27, 18, 14, ...
         1, 8, 20, 15, 13, 9, 10, 12, 15, 15, 21, 4, 5, 6, 20, 35, 56];
     if elementType < 1 || elementType > numel(nodeCounts)
-        error('readMshA:UnsupportedElementType', ...
+        error('readMsh:UnsupportedElementType', ...
             'Unsupported Gmsh element type: %d.', elementType);
     end
     numNodes = nodeCounts(elementType);
@@ -347,10 +347,10 @@ function validateMesh(nodes, elements)
 % validateMesh: Verify that nodes and tetrahedra were successfully read.
 
     if isempty(nodes)
-        error('readMshA:MissingNodes', 'No nodes were found in the file.');
+        error('readMsh:MissingNodes', 'No nodes were found in the file.');
     end
     if isempty(elements)
-        error('readMshA:MissingTetrahedra', ...
+        error('readMsh:MissingTetrahedra', ...
             'No 4-node tetrahedral elements were found in the file.');
     end
     fprintf('Loaded %d nodes and %d elements.\n', size(nodes, 1), ...
@@ -362,7 +362,7 @@ function count = readPositiveIntegerLine(fid, description)
 
     count = sscanf(readLine(fid), '%d', 1);
     if isempty(count) || count < 0
-        error('readMshA:InvalidCount', 'Invalid %s.', description);
+        error('readMsh:InvalidCount', 'Invalid %s.', description);
     end
 end
 
@@ -371,7 +371,7 @@ function requireLine(fid, expected)
 
     actual = readLine(fid);
     if ~strcmp(actual, expected)
-        error('readMshA:InvalidFormat', 'Expected "%s", found "%s".', ...
+        error('readMsh:InvalidFormat', 'Expected "%s", found "%s".', ...
             expected, actual);
     end
 end
@@ -386,7 +386,7 @@ function requireNextNonemptyLine(fid, expected)
         actual = readLine(fid);
     end
     if ~strcmp(actual, expected)
-        error('readMshA:InvalidFormat', 'Expected "%s", found "%s".', ...
+        error('readMsh:InvalidFormat', 'Expected "%s", found "%s".', ...
             expected, actual);
     end
 end
@@ -413,6 +413,6 @@ function skipSection(fid, sectionStart)
             return;
         end
     end
-    error('readMshA:InvalidFormat', 'Missing section terminator "%s".', ...
+    error('readMsh:InvalidFormat', 'Missing section terminator "%s".', ...
         sectionEnd);
 end
