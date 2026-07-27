@@ -2,7 +2,7 @@
 
 
 
-**Im2mesh** is an open-source MATLAB/Octave package for generating finite element mesh based on 2D or 3D multi-phase segmented image. It provides a robust workflow capable of processing various input images, such as microstructure images of engineering materials. Due to its generalized framework, Im2mesh can handle segmented image with more than 10 phases.  Im2mesh was originally released on [MathWorks File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/71772-im2mesh-2d-image-to-finite-element-mesh) in 2019. 
+**Im2mesh** is an open-source MATLAB/Octave package for generating finite element mesh based on 2D or 3D multi-phase segmented image. It provides a robust workflow capable of processing various input images, such as X-ray CT microstructure images of engineering materials. Due to its generalized framework, Im2mesh can handle segmented image with more than 10 phases.  Im2mesh was originally released on [MathWorks File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/71772-im2mesh-2d-image-to-finite-element-mesh) in 2019. 
 
 Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part geometry, aka multi-domain or multi-phase geometry (see demo12-18).
 
@@ -82,7 +82,7 @@ Then, you can learn to use Im2mesh package in the folder "Im2mesh_Matlab" or "Im
 - You can skip demo04 and demo09. These demos are kept for historical reason.
 - If you're only interested in 3D voxel images, you can skip demo01-18.
 
-**Examples:**
+**Demos for 2D image:**
 
 - [demo01](https://mjx888.github.io/im2mesh_demo_html/demo01.html) - Demonstrate function `im2mesh`, which use `MESH2D` as mesh generator.
 - [demo02](https://mjx888.github.io/im2mesh_demo_html/demo02.html) - Demonstrate function `im2meshBuiltIn`, which use MATLAB built-in function `generateMesh` as mesh generator.
@@ -102,6 +102,9 @@ Then, you can learn to use Im2mesh package in the folder "Im2mesh_Matlab" or "Im
 - [demo16](https://mjx888.github.io/im2mesh_demo_html/demo16.html) - Add mesh seeds/nodes
 - [demo17](https://mjx888.github.io/im2mesh_demo_html/demo17.html) - Refine mesh
 - [demo18](https://mjx888.github.io/im2mesh_demo_html/demo18.html) - 2D image to tetrahedral mesh
+
+**Demos for 3D image:**
+
 - [demo19](https://mjx888.github.io/im2mesh_demo_html/demo19.html) - Function `voxelMesh` (voxel-based hexahedral mesh)
 - [demo20](https://mjx888.github.io/im2mesh_demo_html/demo20.html) - 3D voxel image to tetrahedral mesh (via fTetWild)
 
