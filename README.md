@@ -1,7 +1,5 @@
 # Im2mesh (2D or 3D image to finite element mesh)
 
-
-
 **Im2mesh** is an open-source MATLAB/Octave package for generating finite element mesh based on 2D or 3D multi-phase segmented image. It provides a robust workflow capable of processing various input images, such as X-ray CT microstructure images of engineering materials. Due to its generalized framework, Im2mesh can handle segmented image with more than 10 phases.  Im2mesh was originally released on [MathWorks File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/71772-im2mesh-2d-image-to-finite-element-mesh) in 2019. 
 
 Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part geometry, aka multi-domain or multi-phase geometry (see demo12-18).
@@ -10,22 +8,17 @@ Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part
   <img src = "https://mjx888.github.io/im2mesh_demo_html/cover_2602.jpg" height="220"> 
 </p>
 
-
 **Downloads:**
 
 - [Im2mesh package](https://github.com/mjx888/im2mesh/releases)
 - [GUI version](https://mjx888.github.io/others/Im2mesh_GUI.mlappinstall) (MATLAB app)
 - [GUI version](https://mjx888.github.io/others/Installer_Im2mesh_GUI.zip) (standalone desktop application & no need to install MATLAB)
 
-
-
 **News:**
 
-- Version 3.00 is under development. I may release it in August.
+- Version 3.00 is under development, which will support 3D Boolean operation, 3D mesh refinement, better and faster 3D mesh visualization, and better function API. The development progress is around 90%. I need to find some spare time to polish functions and write tutorials. I may release it in November.
 - Version 2.60 can generate tetrahedral mesh based on 3D voxel image! See [demo20](https://mjx888.github.io/im2mesh_demo_html/demo20.html) and [gallery](https://mjx888.github.io/im2mesh_demo_html/gallery.html).
 - Version 2.45 can export image boundaries as `dxf` file (CAD).
-
-
 
 **Features (for 2d):**
 
@@ -36,12 +29,9 @@ Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part
 - 4 mesh generators are available for selection: [MESH2D](https://github.com/dengwirda/mesh2d), [generateMesh](https://www.mathworks.com/help/pde/ug/pde.pdemodel.generatemesh.html), [Gmsh](https://gmsh.info/), and pixelMesh.
 - Graphical user interface (GUI) version is available as a MATLAB app and as a standalone desktop application.
 
-
 <p align="center">
   <img src = "https://mjx888.github.io/im2mesh_demo_html/GUI.png" height="300"> 
 </p>
-
-
 
 **Generated mesh can be exported as:** 
 
@@ -51,24 +41,17 @@ Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part
 - `stl` file
 - For other formats, you can import the generated `msh` file into software Gmsh and then export.
 
-
-
 ## Dependencies
 
 - When running demo02 and demo18 in Im2mesh package, you need to install MATLAB Partial Differential Equation Toolbox. For other demos, no need to install any MATLAB toolboxes.
 - When running demo20 in Im2mesh package, you need to install fTetWild. 
 - When using Im2mesh_GUI as a standalone desktop application, there is no need to install MATLAB or any MATLAB toolboxes. 
 
-
-
 ## Version compatibility
 
 - Im2mesh_GUI: MATLAB R2017b or later; version higher than R2018b is preferred.
 - Im2mesh package: MATLAB R2017b or later. GNU Octave 9.3.0 or later.
 - Gmsh: tested with version 4.13 and 4.14.
-
-
-
 
 ## How to start
 
@@ -108,8 +91,6 @@ Then, you can learn to use Im2mesh package in the folder "Im2mesh_Matlab" or "Im
 - [demo19](https://mjx888.github.io/im2mesh_demo_html/demo19.html) - Function `voxelMesh` (voxel-based hexahedral mesh)
 - [demo20](https://mjx888.github.io/im2mesh_demo_html/demo20.html) - 3D voxel image to tetrahedral mesh (via fTetWild)
 
-
-
 ## Author
 
 Jiexian Ma
@@ -134,9 +115,6 @@ This project incorporates code from the following open-source projects. I apprec
 - [MeshQualityQuads](https://www.mathworks.com/matlabcentral/fileexchange/33108-unstructured-quadrilateral-mesh-quality-assessment) by Allan Peter Engsig-Karup
 - [XtalMesh](https://github.com/jonathanhestroffer/XtalMesh) by Jonathan Hestroffer
 
-
-
 ## Other related projects
 
 - [writeMesh (write mesh to inp, bdf, and msh files)](https://github.com/mjx888/writeMesh)
-
