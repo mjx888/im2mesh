@@ -16,7 +16,7 @@ Im2mesh can also be used as a mesh generation interface for MATLAB 2D multi-part
 
 **News:**
 
-- Version 3.00 is under development, which will support 3D Boolean operation, 3D mesh refinement, better and faster 3D mesh visualization, and better function API. The development progress is around 90%. I need to find some spare time to polish functions and write tutorials. I may release it in November.
+- Version 3.00 is under development, which will support 3D Boolean operation, 3D mesh refinement, better and faster 3D mesh visualization, and better function API. The development progress is around 90%. I couldn't find spare time to polish functions and write tutorials. I may release it in November.
 - Version 2.60 can generate tetrahedral mesh based on 3D voxel image! See [demo20](https://mjx888.github.io/im2mesh_demo_html/demo20.html) and [gallery](https://mjx888.github.io/im2mesh_demo_html/gallery.html).
 - Version 2.45 can export image boundaries as `dxf` file (CAD).
 
