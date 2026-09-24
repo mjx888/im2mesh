@@ -162,10 +162,10 @@ function plotSurface( V, faces, color_code, opt )
 
     %--------------------------------------------------------------------
     % plot mesh
-    figure('GraphicsSmoothing', 'off', 'Renderer', 'opengl');
+    figure('GraphicsSmoothing', 'on', 'Renderer', 'opengl');
     hold on;
     axis image off;
-    camlight headlight;
+    % camlight headlight;
     
     % Single patch using the unified, globally reduced vertices
     patch( ...
